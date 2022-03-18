@@ -3,8 +3,12 @@ const nodemailer = require('nodemailer')
 const {engine} = require('express-handlebars')
 const { join } = require('path')
 
+require('dotenv').config()
 
 const app = express()
+
+//env variable
+const PASSWORD = process.env.PASSWORD
 
 //view setup 
 app.engine('handlebars', engine());
@@ -41,7 +45,7 @@ app.post('/send', async (req,res)=> {
     secure: true, // true for 465, false for other ports
     auth: {
       user: 'test@marinceomario.com', // generated ethereal user
-      pass: '123abc', // generated ethereal password
+      pass: PASSWORD, // generated ethereal password
     },
     tls: {
       rejectUnauthorized: false
